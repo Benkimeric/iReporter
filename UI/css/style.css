@@ -86,34 +86,49 @@ button {
     color: white;
 }
 
-.topnav button:hover{
+.topnav button:hover {
     background-color: white;
     color: #157A6E;
-
 }
+
 /* ################## Login ################################ */
-.container{
+
+.container {
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
     margin: auto;
     width: 50%;
-    margin-top: 8%;  
+    margin-top: 8%;
     /* border-radius: 25px; */
     background-color: white;
     text-align: center;
     font-size: 25px;
     color: #157A6E;
 }
-.container form{
+
+.container form {
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
 }
-.container input[type="text"], .container input[type="password"] {
+
+.container input[type="text"], .container input[type="password"], .container input[type="email"] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
 
+/* ################## sign up ################################ */
+.signup{
+    /* overwrite some styles in container class */
+    margin-top: 2%;
+    font-size: 18px !important;
+    text-align: center
+
+}
+.signup input[type="text"],.signup input[type="email"], .signup input[type="password"] {
+    padding: 10px 10px;
+    min-width: 300px;
 }
