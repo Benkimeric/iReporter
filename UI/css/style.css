@@ -2,13 +2,15 @@ html, body {
     margin: 0;
     padding: 0;
     background-color: #ECEAE3;
+    width: 100%;
+    font-family: "Lato", sans-serif;
 }
 
 .topnav {
     background-color: #157A6E;
     overflow: hidden;
-    padding-right: 100px;
-    padding-left: 100px;
+    padding-right: 10%;
+    padding-left: 10%;
 }
 
 .topnav a {
@@ -17,7 +19,7 @@ html, body {
     text-align: center;
     padding: 20px 20px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 /* logo */
@@ -31,6 +33,11 @@ html, body {
     background-color: #157A6E;
     color: white;
     border: 2px solid white;
+}
+
+.topnav button:hover {
+    background-color: white;
+    color: #157A6E;
 }
 
 /* Header 1 h1 size at index page */
@@ -86,12 +93,8 @@ button {
     color: white;
 }
 
-.topnav button:hover {
-    background-color: white;
-    color: #157A6E;
-}
 
-/* ################## Login ################################ */
+/* ################## Login & SIgnup ################################ */
 
 .container {
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
@@ -132,3 +135,119 @@ button {
     padding: 10px 10px;
     min-width: 300px;
 }
+
+/* ################## create flag################################ */
+.formcontainer{
+    /* position: absolute; */
+    /* left: 0px; */
+    width: 80%;
+    /* border: 3px solid #73AD21; */
+    padding: 10px;
+    margin: auto;
+}
+
+.formcontainer input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+/* sdfghjkl;; */
+.formclass li {
+	padding: 0;
+	display: block;
+	list-style: none;
+	margin: 10px 0 0 0;
+}
+.formclass label{
+	margin:0 0 3px 0;
+	padding:0px;
+	display:block;
+	font-weight: bold;
+}
+.formclass input[type=text], 
+.formclass input[type=date],
+.formclass input[type=datetime],
+.formclass input[type=number],
+.formclass input[type=search],
+.formclass input[type=time],
+.formclass input[type=url],
+.formclass input[type=email],
+textarea, 
+select{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border:1px solid #BEBEBE;
+	padding: 7px;
+	margin:0px;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	outline: none;	
+}
+.formclass input[type=text]:focus, 
+.formclass input[type=date]:focus,
+.formclass input[type=datetime]:focus,
+.formclass input[type=number]:focus,
+.formclass input[type=search]:focus,
+.formclass input[type=time]:focus,
+.formclass input[type=url]:focus,
+.formclass input[type=email]:focus,
+.formclass textarea:focus, 
+.formclass select:focus{
+	-moz-box-shadow: 0 0 8px #88D5E9;
+	-webkit-box-shadow: 0 0 8px #88D5E9;
+	box-shadow: 0 0 8px #88D5E9;
+	border: 1px solid #88D5E9;
+}
+
+
+.formclass .field-long{
+	width: 100%;
+}
+.formclass .field-select{
+	width: 100%;
+}
+.formclass .field-textarea{
+	height: 100px;
+}
+.formclass input[type=submit], .formclass input[type=button]{
+	background: #4B99AD;
+	padding: 8px 15px 8px 15px;
+	border: none;
+	color: #fff;
+}
+.formclass input[type=submit]:hover, .formclass input[type=button]:hover{
+	background: #4691A4;
+	box-shadow:none;
+	-moz-box-shadow:none;
+	-webkit-box-shadow:none;
+}
+/* .formclass .required{
+	color:red;
+} */
+
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(202, 202, 202);
+    color: black;
+    text-align: center;
+ }
