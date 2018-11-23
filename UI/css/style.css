@@ -82,6 +82,7 @@ button {
     cursor: pointer;
 }
 
+
 .button-outline {
     background-color: white;
     color: black;
@@ -253,10 +254,16 @@ select{
  }
 
  /* ######################user home page################## */
+ .homeh3andcontainer{
+     margin-left: 20%;
+     margin-right: 20%;
+ }
+
  .grid-container {
      margin-top: 50px;
     display: grid;
     grid-template-columns: auto auto auto;
+    
     
   }
   .grid-item {
@@ -267,3 +274,25 @@ select{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
   }
+
+  /* ############### list table##################### */
+  .tablesection {
+    border-collapse: collapse;
+    /* width: 100%; */
+    margin: 0 auto;
+}
+
+td, th {
+    /* border: 1px solid #dddddd; */
+    text-align: left;
+    padding: 8px;
+}
+
+td button{
+    padding: 5px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
