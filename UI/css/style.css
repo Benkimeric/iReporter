@@ -251,3 +251,18 @@ select{
     color: black;
     text-align: center;
  }
+
+ /* ######################user home page################## */
+ .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    
+  }
+  .grid-item {
+    margin: 2px;
+    /* min-height: 200px; */
+    font-size: 30px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  }
