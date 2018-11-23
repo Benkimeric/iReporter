@@ -26,11 +26,15 @@
         <form>
             <ul class="formclass">
                 <li>
-                    <label>Subject</label>
                     <select name="field4" class="field-select">
+                        <option value="type" disabled selected>Select type To Create</option>
                         <option value="redflag">Red-Flag</option>
                         <option value="intervention">Intervention</option>
                     </select>
+                </li>
+                <li>
+                    <label>Subject</label>
+                    <input type="text" name="location" class="field-long" />
                 </li>
                 <li>
                     <label>Description</span></label>
@@ -38,7 +42,7 @@
                 </li>
                 <li>
                     <label>Search Location </label>
-                    <input type="text" name="Subject" class="field-long" />
+                    <input type="text" name="location" class="field-long" />
                 </li>
                 <li>
                     <input id="submit" type="submit" value="Create" />
@@ -47,8 +51,8 @@
         </form>
     </div>
     <div class="footer">
-            <p>&copy; 2018 </p>
-          </div>
+        <p>&copy; 2018 </p>
+    </div>
 </body>
 
 </html>
