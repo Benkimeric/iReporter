@@ -9,8 +9,8 @@ html, body {
 .topnav {
     background-color: #157A6E;
     overflow: hidden;
-    padding-right: 10%;
-    padding-left: 10%;
+    padding-right: 8%;
+    padding-left: 8%;
 }
 
 .topnav a {
@@ -103,7 +103,7 @@ button {
     /* border-radius: 25px; */
     background-color: white;
     text-align: center;
-    font-size: 25px;
+    font-size: 18px;
     color: #157A6E;
 }
 
@@ -208,6 +208,7 @@ button {
 
 .formclass .field-select {
     width: 100%;
+    min-width: 100px;;
 }
 
 .formclass .field-textarea {
