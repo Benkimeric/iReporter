@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>iReporter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+</head>
+
+<body>
+    <div class="topnav">
+        <a id="logo" href="#">iReporter</a>
+        <div class="right">
+            <a href="home.html">Home</a>
+            <a href="list.html">My Flags & Interventions</a>
+            <a href="allflags.html">All Flags & Intereventions</a>
+            <a href="profile.html">Profile</a>
+            <a href="login.html">Logout</a>
+        </div>
+    </div>
+
+    <div class="tablesection">
+        <div class="homeh3andcontainer">
+            <h3>Editing Red-Flag or an Intervention</h3>
+            <form>
+                <ul class="formclass">
+                    <li>
+                        <select name="field4" class="field-select">
+                            <option value="type" disabled selected>Select type To Create</option>
+                            <option value="redflag">Red-Flag</option>
+                            <option value="intervention">Intervention</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>Subject</label>
+                        <input type="text" name="location" class="flags-inputs" />
+                    </li>
+                    <li>
+                        <label>Description</span></label>
+                        <textarea name="description" id="description" class="flags-inputs field-textarea"></textarea>
+                    </li>
+                    <li>
+                        <label>Search Location </label>
+                        <input type="text" name="location" class="flags-inputs" />
+                    </li>
+                    <li>
+                        <label>Choose Image To upload </label>
+                        <input type="file" name="image" class="flags-inputs" accept="image/*" />
+                    </li>
+                    <li>
+                        <label>Choose Video To upload </label>
+                        <input type="file" name="image" class="flags-inputs" accept="video/*" />
+                    </li>
+                    <li>
+                        <input id="submit" type="submit" value="Create" />
+                    </li>
+                </ul>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2018 </p>
+    </div>
+</body>
+
+</html>
