@@ -19,18 +19,18 @@
     <div>
         <div class="container">
             <h2>Login</h2>
-            <form action="" method="POST">
-                <!-- <label for="username">Username:</label><br> -->
-                <input type="text" name="Username" placeholder="Username" id="username"><br>
+            <h3><label id="error_label"></label></h3>
+            <form action="" id="login" method="POST">
+                <input type="text" name="Username" placeholder="Username" id="username" required><br>
 
-                <!-- <label for="pass">Password:</label><br> -->
-                <input type="password" name="Password" placeholder="Password" id="pass"><br>
-                
-                <button><a href="home.html">Sign In</a></button><br>
-                <label ><a href="signup.html">New user? Sign Up</a></label><br> <br>
+                <input type="password" name="Password" placeholder="Password" id="pass" required><br>
+
+                <input class="button-login" type="submit" value="Login"><br>
+                <label><a href="signup.html">New user? Sign Up</a></label><br> <br>
             </form>
         </div>
     </div>
+    <script src="js/auth.js"> </script>
 </body>
 
 </html>
