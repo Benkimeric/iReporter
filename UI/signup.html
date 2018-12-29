@@ -19,28 +19,30 @@
     <div>
         <div class="container signup">
             <h2>Sign Up</h2><br>
-            <form action="" method="POST">
-                <input type="text" name="firstName" placeholder="First Name" id="fname"><br>
+            <h3><label id="signup_error_label"></label></h3>
+            <form action="" id="signup" method="POST">
+                <input type="text" name="fname" placeholder="First Name" id="fname" required><br>
 
-                <input type="text" name="lname" placeholder="Last Name" id="lname"><br>
+                <input type="text" name="lname" placeholder="Last Name" id="lname" required><br>
 
-                <input type="text" name="mname" placeholder="Middle name" id="lname"><br>
+                <input type="text" name="mname" placeholder="Middle name" id="mname" required><br>
 
-                <input type="text" name="Username" placeholder="Username" id="username"><br>
+                <input type="text" name="username" placeholder="Username" id="username" required><br>
 
-                <input type="email" name="email" placeholder="Email" id="email"><br>
+                <input type="email" name="email" placeholder="Email" id="email" required><br>
 
-                <input type="text" name="phone"  placeholder="Phone" id="phone"><br>
+                <input type="text" name="phone"  placeholder="Phone" id="phone" required><br>
 
-                <input type="password" name="pass"  placeholder="Password" id="phone"><br>
+                <input type="password" name="pass"  placeholder="Password" id="pass" required><br>
 
-                <input type="password" name="pass2"  placeholder="Confirm Password" id="phone"><br>
+                <input type="password" name="pass2"  placeholder="Confirm Password" id="pass2" required><br>
 
-                <button> <a href="login.html">Sign Up </a></button><br>
+                <button> Sign Up </button><br>
                 <label><a href="login.html">Got an account? Sign In</a></label><br> <br>
             </form>
         </div>
     </div>
+    <script src="js/auth.js"> </script>
 </body>
 
 </html>
