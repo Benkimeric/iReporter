@@ -40,7 +40,7 @@ function login_redirect() {
         window.location.replace("./login.html")
     }, 5000)
 }
-// reload page after 2 seconds
+// hide information label
 function hide_label() {
     let timeout_label = document.getElementById('timeout_label')
     window.setTimeout(function () {

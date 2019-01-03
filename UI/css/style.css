@@ -131,6 +131,10 @@ label{
     font-size: 15px;
 }
 
+.form_label{
+    color: black !important;
+}
+
 .container input[type="text"], .container input[type="password"], .container input[type="email"] {
     width: 100%;
     padding: 12px 20px;
