@@ -177,3 +177,148 @@ function populate_modal() {
     }
 
 }
+
+function get_user_record_type(e) {
+    window.record_type = e.getAttribute("data-value");
+    getUserRecords() 
+}
+
+function hide_user_label() {
+    let user_timeout_label = document.getElementById('user_timeout_label')
+    window.setTimeout(function () {
+        if (user_timeout_label) {
+            user_timeout_label.innerHTML = ""
+        }
+    }, 2000)
+}
+
+// display logged in user records
+function getUserRecords() {
+    fetch(`${base_URL}user/${record_type}`, {
+        method: 'GET',
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Request-Method': '*',
+            "Authorization": access_token
+        }
+    })
+        .then((res) => res.json())
+        // .then((data) => console.log(data))
+        .then((data) => {
+            if (data.status == 404) {
+                let user_timeout_label = document.getElementById('user_timeout_label')
+                if (user_timeout_label) {
+                    user_timeout_label.innerHTML = data.message
+                    hide_user_label()
+                }
+            } else if (data.message == 'Internal Server Error') {
+                let user_timeout_label = document.getElementById('user_timeout_label')
+                if (user_timeout_label) {
+                    user_timeout_label.innerHTML = "Session has expired, you will be redirected to login again"
+                    login_redirect()
+                }
+            } else {
+                let records = `
+                            <tr>
+                            <th>ID</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                            </tr>
+                            `;
+                data['data'].forEach(function (record) {
+                    records += `
+              <tr>
+                  <td>${record.id}</td>
+                  <td>${record.type}</td>
+                  <td>${record.comment}</td>
+                  <td>${record.status}</td>
+                  <td><button class="myBtn" onclick="openUserRecord()"> Open </button></td>
+                  <td><button class="myBtn" > Edit </button></td>
+                  <td><button class="myBtn" > Delete </button></td>
+              </td>
+              </tr>
+            `;
+                });
+                document.getElementById('user_records').innerHTML = records;
+            }
+        })
+        .catch((err) => console.log(err))
+}
+
+// open on modal upon clicking open button in all incidents table
+function openUserRecord() {
+    populate_user_modal()
+    modal.style.display = "block";
+}
+
+function populate_user_modal() {
+    var ref_table = document.getElementById('user_records')
+
+    for (var i = 0; i < ref_table.rows.length; i++) {
+        ref_table.rows[i].onclick = function () {
+            record_id = this.cells[0].innerHTML;
+
+            fetch(`${base_URL}${record_type}/` + record_id, {
+                method: 'GET',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Request-Method': '*',
+                    "Authorization": access_token
+                }
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    // console.log(data.data)
+                    let user_records = `
+                              <tr>
+                              <th>ID</th>
+                              <td>${data.data.id}</td>
+                              </tr>
+                              <tr>
+                              <th>Type</th>
+                              <td>${data.data.type}</td>
+                              </tr>
+                              <tr>
+                              <th>Status</th>
+                              <td>${data.data.status}</td>
+                              </tr>
+                              <tr>
+                              <th>Created On</th>
+                              <td>${data.data.create_on}</td>
+                              </tr>
+                              <tr>
+                              <th>Created By</th>
+                              <td>${data.data.create_by}</td>
+                              </tr>
+                              <tr>
+                              <th>Location</th>
+                              <td>${data.data.location}</td>
+                              </tr>
+                              <tr>
+                              <th>Description</th>
+                              <td>${data.data.comment}</td>
+                              </tr>
+                              <tr>
+                              <th>Image(click to open)</th>
+                              <td>
+                              <a target="_blank" href="media/image.png">
+                              <img src="media/image.png" alt="Image deipaly corruption" class="image">
+                          </a>
+                              </td>
+                              </tr>
+                              <tr>
+                              <th>Videos</th>
+                              <td>${data.data.video}</td>
+                              </tr>
+                              <tr>
+                              `;
+
+                    document.getElementById('one_user_record').innerHTML = user_records;
+                })
+                .catch((err) => console.log(err))
+        }
+    }
+
+}
