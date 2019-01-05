@@ -9,13 +9,13 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
 </head>
 
-<body>
+<body onload="loadData()">
     <div class="topnav">
         <a id="logo" href="#">iReporter</a>
         <div class="right">
             <a href="home.html">Home</a>
             <a href="list.html">My Flags & Interventions</a>
-            <a href="allflags.html">All Flags & Intereventions</a>
+            <a href="allflags.html">All Flags & Interventions</a>
             <a href="profile.html">Profile</a>
             <a href="login.html">Logout</a>
             <a href="admin.html">Admin</a>
@@ -25,23 +25,30 @@
     <div class="homecenter">
         <div class="homeh3andcontainer">
             <h3>User Dashboard</h3>
+            <label id="home_label" ></label>
             <div class="grid-container">
                 <div class="grid-item">
                     <br><br><br>
-                    5 Interventions Resolved<br>
-                    3 Red-Flags Resolved<br>
+                    <span id="intervention_draft"></span> Interventions in Draft<br>
+                    <span id="draft_span" data-state="draft" data-value="red-flag"></span> Red-Flags in Draft<br>
                     <a href="list.html">View all</a>
                 </div>
                 <div class="grid-item centergriditem">
-                    <br><br><br><br>
-                    0 Interventions Under Investigation<br>
-                    2 Red-Flags Under Investigation<br>
+                        <br><br><br>
+                        <span id="inter_investi"></span> Interventions Under Investigation<br>
+                        <span id="flag_investi"></span> Red-Flags Under Investigation<br>
+                        <a href="list.html">View all</a>
+                    </div>
+                <div class="grid-item">
+                    <br><br><br>
+                    <span id="resolv_interv"></span> Interventions Resolved<br>
+                    <span id="resolv_flags"></span> Red-Flags Resolved<br>
                     <a href="list.html">View all</a>
                 </div>
                 <div class="grid-item">
-                    <br><br><br><br>
-                    0 Interventions Rejected<br>
-                    3 Red-Flags Rejected<br>
+                    <br><br><br>
+                    <span id="reject_interv"></span> Interventions Rejected<br>
+                    <span id="reject_flags"></span> Red-Flags Rejected<br>
                     <a href="list.html">View all</a>
                 </div>
             </div>
@@ -51,6 +58,7 @@
     <div class="footer">
         <p>&copy; 2018 </p>
     </div>
+    <script src="js/incidents_count.js"> </script>
 </body>
 
 </html>

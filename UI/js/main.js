@@ -235,8 +235,8 @@ function getUserRecords() {
                   <td>${record.comment}</td>
                   <td>${record.status}</td>
                   <td><button class="myBtn" onclick="openUserRecord()"> Open </button></td>
-                  <td><button class="myBtn" > Edit </button></td>
-                  <td><button class="myBtn" > Delete </button></td>
+                  <td><button class="myBtn" style="background-color:grey"> Edit </button></td>
+                  <td><button class="myBtn" style="background-color:#E67373" onclick="deleteRecord()"> Delete </button></td>
               </td>
               </tr>
             `;
@@ -318,6 +318,68 @@ function populate_user_modal() {
                     document.getElementById('one_user_record').innerHTML = user_records;
                 })
                 .catch((err) => console.log(err))
+        }
+    }
+
+}
+
+// delete incidents
+function deleteRecord() {
+    var ref_table = document.getElementById('user_records')
+    var delete_confirm = confirm("Are you sure you want to delete this record?\nPress OK to DELETE and Cancel to Abort");
+    if (delete_confirm == true) {
+        for (var i = 0; i < ref_table.rows.length; i++) {
+            ref_table.rows[i].onclick = function () {
+                record_id = this.cells[0].innerHTML;
+                type_of_record = this.cells[1].innerHTML;
+    
+                fetch(`${base_URL}${type_of_record}/` + record_id, {
+                    method: 'DELETE',
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Request-Method': '*',
+                        "Authorization": access_token
+                    }
+                })
+                    .then((res) => res.json())
+                    // .then((data) => console.log(data))
+                    .then((data) => {
+                        if (data.message == type_of_record + " has been deleted") {
+                            let user_timeout_label = document.getElementById('user_timeout_label')
+                            if (user_timeout_label) {
+                                user_timeout_label.innerHTML = data.message
+                                window.setTimeout(function(){
+                                    location.reload()                                                       
+                                }, 3000);
+                            }
+                        } else if (data.message == 'Internal Server Error') {
+                            let user_timeout_label = document.getElementById('user_timeout_label')
+                            if (user_timeout_label) {
+                                user_timeout_label.innerHTML = "Session has expired, you will be redirected to login again"
+                                login_redirect()
+                            }
+                        }else if(data.status == 403){
+                            let user_timeout_label = document.getElementById('user_timeout_label')
+                            if (user_timeout_label) {
+                                user_timeout_label.innerHTML = data.message
+                                hide_user_label()
+                            }
+                        }else{
+                            let user_timeout_label = document.getElementById('user_timeout_label')
+                            if (user_timeout_label) {
+                                user_timeout_label.innerHTML = data.message
+                                hide_user_label()
+                            }
+                        }       
+                    })
+                    .catch((err) => console.log(err))
+            }
+        }
+    } else {
+        let user_timeout_label = document.getElementById('user_timeout_label')
+        if (user_timeout_label) {
+            user_timeout_label.innerHTML = "Record Not Deleted"
+            hide_user_label()
         }
     }
 
