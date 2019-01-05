@@ -180,7 +180,7 @@ function populate_modal() {
 
 function get_user_record_type(e) {
     window.record_type = e.getAttribute("data-value");
-    getUserRecords() 
+    getUserRecords()
 }
 
 function hide_user_label() {
@@ -235,7 +235,7 @@ function getUserRecords() {
                   <td>${record.comment}</td>
                   <td>${record.status}</td>
                   <td><button class="myBtn" onclick="openUserRecord()"> Open </button></td>
-                  <td><button class="myBtn" style="background-color:grey"> Edit </button></td>
+                  <td><button class="myBtn" style="background-color:grey" onclick="redirect()"> Edit </button></td>
                   <td><button class="myBtn" style="background-color:#E67373" onclick="deleteRecord()"> Delete </button></td>
               </td>
               </tr>
@@ -332,7 +332,7 @@ function deleteRecord() {
             ref_table.rows[i].onclick = function () {
                 record_id = this.cells[0].innerHTML;
                 type_of_record = this.cells[1].innerHTML;
-    
+
                 fetch(`${base_URL}${type_of_record}/` + record_id, {
                     method: 'DELETE',
                     headers: {
@@ -348,8 +348,8 @@ function deleteRecord() {
                             let user_timeout_label = document.getElementById('user_timeout_label')
                             if (user_timeout_label) {
                                 user_timeout_label.innerHTML = data.message
-                                window.setTimeout(function(){
-                                    location.reload()                                                       
+                                window.setTimeout(function () {
+                                    location.reload()
                                 }, 3000);
                             }
                         } else if (data.message == 'Internal Server Error') {
@@ -358,19 +358,19 @@ function deleteRecord() {
                                 user_timeout_label.innerHTML = "Session has expired, you will be redirected to login again"
                                 login_redirect()
                             }
-                        }else if(data.status == 403){
+                        } else if (data.status == 403) {
                             let user_timeout_label = document.getElementById('user_timeout_label')
                             if (user_timeout_label) {
                                 user_timeout_label.innerHTML = data.message
                                 hide_user_label()
                             }
-                        }else{
+                        } else {
                             let user_timeout_label = document.getElementById('user_timeout_label')
                             if (user_timeout_label) {
                                 user_timeout_label.innerHTML = data.message
                                 hide_user_label()
                             }
-                        }       
+                        }
                     })
                     .catch((err) => console.log(err))
             }
@@ -380,6 +380,21 @@ function deleteRecord() {
         if (user_timeout_label) {
             user_timeout_label.innerHTML = "Record Not Deleted"
             hide_user_label()
+        }
+    }
+
+}
+
+function redirect() {
+    var ref_table = document.getElementById('user_records')
+
+    for (var i = 0; i < ref_table.rows.length; i++) {
+        ref_table.rows[i].onclick = function () {
+            localStorage.setItem('record_id', this.cells[0].innerHTML)
+            localStorage.setItem('record_type', this.cells[1].innerHTML)
+            localStorage.setItem('record_comment', this.cells[2].innerHTML)
+
+            window.location.href = "editflag.html"
         }
     }
 
