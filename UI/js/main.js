@@ -548,3 +548,64 @@ function adminPopulateModal() {
         }
     }
 }
+
+function updateStatus() {
+    var elementStatus = document.querySelectorAll('#status_select');
+
+    elementStatus.forEach(function (elem) {
+        elem.addEventListener("click", function (e) {
+            // console.log(this.value)
+            var new_status = this.value
+            // patch
+            var admin_table = document.getElementById('admin_view_all')
+
+            for (var i = 0; i < admin_table.rows.length; i++) {
+                admin_table.rows[i].onclick = function () {
+                    record_id = this.cells[0].innerHTML;
+
+                    fetch(`${base_URL}${record_type}/${record_id}/status`, {
+                        method: 'PATCH',
+                        headers: {
+                            "Content-type": "application/json",
+                            "Accept": "application/json",
+                            "Authorization": access_token
+                        },
+                        body: JSON.stringify({
+                            status: new_status
+                        })
+                    })
+                        .then((res) => res.json())
+                        // .then((data) => console.log(data))
+                        .then((data) => {
+                            if (data.status == 200) {
+                                let admin_label = document.getElementById('admin_label')
+                                if (admin_label) {
+                                    document.getElementById("admin_label").style.color = "green";
+                                    admin_label.innerHTML = data.message
+                                    hide_admin_label()
+                                }
+                            } else if (data.message == 'Internal Server Error') {
+                                let admin_label = document.getElementById('admin_label')
+                                if (admin_label) {
+                                    admin_label.innerHTML = "Session has expired, you will be redirected to login again"
+                                    login_redirect()
+                                }
+                            }
+                            else {
+                                let admin_label = document.getElementById('admin_label')
+                                if (admin_label) {
+                                    admin_label.innerHTML = data.message
+                                    hide_admin_label()
+                                }
+                            }
+                        })
+                        .catch((err) => console.log(err))
+                }
+            }
+
+            // end patch
+        });
+    });
+}
+
+
