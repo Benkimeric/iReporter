@@ -465,3 +465,86 @@ function adminView() {
         })
         .catch((err) => console.log(err))
 }
+
+function hide_admin_label() {
+    let admin_label = document.getElementById('admin_label')
+    window.setTimeout(function () {
+        if (admin_label) {
+            admin_label.innerHTML = ""
+        }
+    }, 2000)
+}
+
+function adminOpenRecord() {
+    adminPopulateModal()
+    modal.style.display = "block";
+}
+
+function adminPopulateModal() {
+    var admin_table = document.getElementById('admin_view_all')
+
+    for (var i = 0; i < admin_table.rows.length; i++) {
+        admin_table.rows[i].onclick = function () {
+            record_id = this.cells[0].innerHTML;
+
+            fetch(`${base_URL}${record_type}/` + record_id, {
+                method: 'GET',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Request-Method': '*',
+                    "Authorization": access_token
+                }
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    // console.log(data.data)
+                    let records = `
+                              <tr>
+                              <th>ID</th>
+                              <td>${data.data.id}</td>
+                              </tr>
+                              <tr>
+                              <th>Type</th>
+                              <td>${data.data.type}</td>
+                              </tr>
+                              <tr>
+                              <th>Status</th>
+                              <td>${data.data.status}</td>
+                              </tr>
+                              <tr>
+                              <th>Created On</th>
+                              <td>${data.data.create_on}</td>
+                              </tr>
+                              <tr>
+                              <th>Created By</th>
+                              <td>${data.data.create_by}</td>
+                              </tr>
+                              <tr>
+                              <th>Location</th>
+                              <td>${data.data.location}</td>
+                              </tr>
+                              <tr>
+                              <th>Description</th>
+                              <td>${data.data.comment}</td>
+                              </tr>
+                              <tr>
+                              <th>Image(click to open)</th>
+                              <td>
+                              <a target="_blank" href="media/image.png">
+                              <img src="media/image.png" alt="Image display corruption" class="image">
+                          </a>
+                              </td>
+                              </tr>
+                              <tr>
+                              <th>Videos</th>
+                              <td>${data.data.video}</td>
+                              </tr>
+                              <tr>
+                              `;
+
+                    document.getElementById('admin_view_one').innerHTML = records;
+                })
+                .catch((err) => console.log(err))
+        }
+    }
+}
