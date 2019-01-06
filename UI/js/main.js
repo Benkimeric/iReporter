@@ -399,3 +399,69 @@ function redirect() {
     }
 
 }
+// admin view all records
+function admin_record_type(e) {
+    window.record_type = e.getAttribute("data-value");
+    adminView() // display record type on click
+}
+
+function adminView() {
+    fetch(`${base_URL}${record_type}`, {
+        method: 'GET',
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Request-Method': '*',
+            "Authorization": access_token
+        }
+    })
+        .then((res) => res.json())
+        // .then((data) => console.log(data))
+        .then((data) => {
+            if (data.status == 404) {
+                let admin_label = document.getElementById('admin_label')
+                if (admin_label) {
+                    admin_label.innerHTML = data.message
+                    hide_admin_label()
+                }
+            } else if (data.message == 'Internal Server Error') {
+                let admin_label = document.getElementById('admin_label')
+                if (admin_label) {
+                    admin_label.innerHTML = "Session has expired, you will be redirected to login again"
+                    login_redirect()
+                }
+            } else {
+                let records = `
+                        <tr>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Change Status To:</th>
+                        </tr>
+                        `;
+                data['data'].forEach(function (record) {
+                    records += `
+          <tr>
+              <td>${record.id}</td>
+              <td>${record.type}</td>
+              <td>${record.comment}</td>
+              <td>${record.status}</td>
+              <td>
+                <select name="field4" id="status_select" class="field-select" onChange="updateStatus()">
+                <option disabled selected>Set Status To:</option>
+                <option >resolved</option>
+                <option >rejected</option>
+                <option >draft</option>
+                <option >under investigation</option>
+                </select>
+              </td>
+          </td>
+              <td><button class="myBtn" onclick="adminOpenRecord()"> Open </button></td>
+          </tr>
+        `;
+                });
+                document.getElementById('admin_view_all').innerHTML = records;
+            }
+        })
+        .catch((err) => console.log(err))
+}
