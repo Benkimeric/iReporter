@@ -73,3 +73,103 @@ function viewProfile() {
         })
         .catch((err) => console.log(err))
 }
+
+// view all users
+function viewUsers() {
+    fetch(`${base_URL}users`, {
+        method: 'GET',
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Request-Method': '*',
+            "Authorization": access_token
+        }
+    })
+        .then((res) => res.json())
+        // .then((data) => console.log(data))
+        .then((data) => {
+            if (data.status == 404) {
+                let users_label = document.getElementById('users_label')
+                if (users_label) {
+                    users_label.innerHTML = data.message
+                    hide_label()
+                }
+            } else if (data.message == 'Internal Server Error') {
+                let users_label = document.getElementById('users_label')
+                if (users_label) {
+                    users_label.innerHTML = "Session has expired, you will be redirected to login again"
+                    login_redirect()
+                }
+            } else {
+                let records = `
+                        <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Other Names</th>
+                        <th>UserName</th>
+                        <th>Email</th>
+                        </tr>
+                        `;
+                data['data'].forEach(function (record) {
+                    records += `
+          <tr>
+              <td>${record.id}</td>
+              <td>${record.first_name}</td>
+              <td>${record.last_name}</td>
+              <td>${record.other_names}</td>
+              <td>${record.user_name}</td>
+              <td>${record.email}</td>
+              <td><button class="myBtn" onclick="makeAdmin()"> Make Admin </button></td>
+          </td>
+          </tr>
+        `;
+                });
+                document.getElementById('all_users').innerHTML = records;
+            }
+        })
+        .catch((err) => console.log(err))
+}
+
+function makeAdmin() {
+    var users_table = document.getElementById('all_users')
+
+    for (var i = 0; i < users_table.rows.length; i++) {
+        users_table.rows[i].onclick = function () {
+            user_id = this.cells[0].innerHTML;
+
+            fetch(`${base_URL}makeadmin/` + user_id, {
+                method: 'PATCH',
+                headers: {
+                    "Content-type": "application/json",
+                    "Accept": "application/json",
+                    "Authorization": access_token
+                }
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.status == 200) {
+                        let users_label = document.getElementById('users_label')
+                        if (users_label) {
+                            document.getElementById("users_label").style.color = "green";
+                            users_label.innerHTML = data.message
+                            hide_label()
+                        }
+                    } else if (data.message == 'Internal Server Error') {
+                        let users_label = document.getElementById('users_label')
+                        if (users_label) {
+                            users_label.innerHTML = "Session has expired, you will be redirected to login again"
+                            login_redirect()
+                        }
+                    }
+                    else {
+                        let users_label = document.getElementById('users_label')
+                        if (users_label) {
+                            users_label.innerHTML = data.message
+                            hide_label()
+                        }
+                    }
+                })
+                .catch((err) => console.log(err))
+        }
+    }
+}
