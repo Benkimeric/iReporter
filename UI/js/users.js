@@ -10,10 +10,10 @@ if (token === null) {
 }
 
 function hide_label() {
-    let users_label = document.getElementById('users_label')
+    let profile_label = document.getElementById('profile_label')
     window.setTimeout(function () {
-        if (users_label) {
-            users_label.innerHTML = ""
+        if (profile_label) {
+            profile_label.innerHTML = ""
         }
     }, 2000)
 }
