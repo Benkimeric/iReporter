@@ -57,6 +57,11 @@ function showRedDrafts() {
         .catch((err) => console.log(err))
 }
 
+function logout() {
+    localStorage.removeItem('token');
+    window.location.replace("./login.html")
+}
+
 function showInterventionDrafts() {
     fetch(`${base_URL}user/intervention/draft`, {
         method: 'GET',

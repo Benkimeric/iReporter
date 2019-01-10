@@ -192,6 +192,11 @@ function hide_user_label() {
     }, 2000)
 }
 
+function logout() {
+    localStorage.removeItem('token');
+    window.location.replace("./login.html")
+}
+
 // display logged in user records
 function getUserRecords() {
     fetch(`${base_URL}user/${record_type}`, {
