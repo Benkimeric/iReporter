@@ -15,9 +15,9 @@
         <div class="right">
             <a href="home.html">Home</a>
             <a href="list.html">My Flags & Interventions</a>
-            <a href="allflags.html">All Flags & Intereventions</a>
+            <a href="allflags.html">All Flags & Interventions</a>
             <a href="profile.html">Profile</a>
-            <a href="login.html">Logout</a>
+            <a onclick="logout()" class="pointer_cursor">Logout</a>
         </div>
 
 
@@ -25,44 +25,44 @@
     <!-- create new flag -->
     <div class="formcontainer">
         <p>Create New:</p>
-        <form>
+        <form id="new_incident_form" method="POST">
             <ul class="formclass">
+                    <label id="flags_error_label"></label>
                 <li>
-                    <select name="field4" class="field-select">
-                        <option value="type" disabled selected>Select type To Create</option>
-                        <option value="redflag">Red-Flag</option>
-                        <option value="intervention">Intervention</option>
+                    <label class="form_label">Record Type</label>
+                    <select name="field4" id="record_type" class="field-select" required>
+                        <option value="red-flag">Red-Flag</option>
+                        <option value="intervention" selected>Intervention</option>
                     </select>
                 </li>
                 <li>
-                    <label>Subject</label>
-                    <input type="text" name="location" class="flags-inputs" />
+                    <label class="form_label">Description</span></label>
+                    <textarea name="description" id="description" class="flags-inputs field-textarea" required></textarea>
                 </li>
                 <li>
-                    <label>Description</span></label>
-                    <textarea name="description" id="description" class="flags-inputs field-textarea"></textarea>
+                    <label class="form_label">Search Location </label>
+                    <input type="text" name="location" id="location" class="flags-inputs" required/>
                 </li>
                 <li>
-                    <label>Search Location </label>
-                    <input type="text" name="location" class="flags-inputs" />
+                    <label class="form_label">Choose Image To upload </label>
+                    <input type="file" name="image" id="image" class="flags-inputs" accept="image/*" />
                 </li>
                 <li>
-                    <label>Choose Image To upload </label>
-                    <input type="file" name="image" class="flags-inputs" accept="image/*" />
-                </li>
-                <li>
-                    <label>Choose Video To upload </label>
-                    <input type="file" name="image" class="flags-inputs" accept="video/*" />
+                    <label class="form_label">Choose Video To upload </label>
+                    <input type="file" name="video" id="video" class="flags-inputs" accept="video/*" />
                 </li>
                 <li>
                     <input id="submit" type="submit" value="Create" />
                 </li>
+                
             </ul>
         </form>
     </div>
+    <br><br><br><br>
     <div class="footer">
         <p>&copy; 2018 </p>
     </div>
+    <script src="js/incidents.js"> </script>
 </body>
 
 </html>

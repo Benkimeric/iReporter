@@ -9,13 +9,13 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
 </head>
 
-<body>
+<body onload="adminView()">
     <div class="topnav">
         <a id="logo" href="index.html">iReporter (Admin)</a>
         <div class="right">
-  
+            <a href="users.html">Users</a>
             <a href="profile.html">Profile</a>
-            <a href="login.html">Logout</a>
+            <a onclick="logout()" class="pointer_cursor">Logout</a>
         </div>
     </div>
 
@@ -23,169 +23,32 @@
         <div class="homeh3andcontainer">
             <br><br>
             <h3>All Red-Flags and Interventions</h3>
+            <h3><a href="#" data-value="red-flag" onclick="admin_record_type(this)">View Red-flags</a></h3>
+            <h3><a href="#" data-value="intervention" onclick="admin_record_type(this)">View Interventions</a></h3>
+            <label id="admin_label"></label>
             <input type="text" id="searchflag" placeholder="Search for Flags and Interventions">
-            <table>
-                <tr>
-                    <th>Subject</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                    <th class="statuschange">Change Status</th>
-                </tr>
-                <tr>
-                    <td>Corruption along Mombasa Road</td>
-                    <td>Red-Flag</td>
-                    <td>This is to bring to your attention of Corruption along Mombasa Road</td>
-                    <td>Resolved</td>
-                    <td>
-                        <select name="field4" class="field-select">
-                        <option value="type" disabled selected>Update Status</option>
-                        <option value="resolve">Resolve</option>
-                        <option value="reject">Reject</option>
-                        <option value="draft">Under Investigation</option>
-                        </select>
-                    </td>
-                    <td><button class="myBtn modalbtn"> Open </button></a></td>
-                </tr>
-                <tr>
-                    <td>Corruption along Mombasa Road</td>
-                    <td>Interevention</td>
-                    <td>This is to bring to your attention of Corruption along Mombasa Road</td>
-                    <td>Resolved</td>
-                    <td>
-                        <select name="field4" class="field-select">
-                                <option value="type" disabled selected>Update Status</option>
-                        <option value="resolve">Resolve</option>
-                        <option value="reject">Reject</option>
-                        <option value="draft">Under Investigation</option>
-                        </select>
-                    </td>
-                    <td><button class="myBtn modalbtn"> Open </button></a></td>
-                </tr>
-                <tr>
-                    <td>Corruption along Mombasa Road</td>
-                    <td>Interevention</td>
-                    <td>This is to bring to your attention of Corruption along Mombasa Road</td>
-                    <td>Resolved</td>
-                    <td>
-                        <select name="field4" class="field-select">
-                                <option value="type" disabled selected>Update Status</option>
-                        <option value="resolve">Resolve</option>
-                        <option value="reject">Reject</option>
-                        <option value="draft">Under Investigation</option>
-                        </select>
-                    </td>
-                    <td><button class="myBtn modalbtn"> Open </button></a></td>
-                </tr>
-                <tr>
-                    <td>Corruption along Mombasa Road</td>
-                    <td>Red-Flag</td>
-                    <td>This is to bring to your attention of Corruption along Mombasa Road</td>
-                    <td>Resolved</td>
-                    <td>
-                        <select name="field4" class="field-select">
-                        <option value="type" disabled selected>Update Status</option>
-                        <option value="resolve">Resolve</option>
-                        <option value="reject">Reject</option>
-                        <option value="draft">Under Investigation</option>
-                        </select>
-                    </td>
-                    <td><button class="myBtn modalbtn"> Open </button></a></td>
-                </tr>
-                <tr>
-                    <td>Corruption along Mombasa Road</td>
-                    <td>Red-Flag</td>
-                    <td>This is to bring to your attention of Corruption along Mombasa Road</td>
-                    <td>Resolved</td>
-                    <td>
-                        <select name="field4" class="field-select">
-                        <option value="type" disabled selected>Update Status</option>
-                        <option value="resolve">Resolve</option>
-                        <option value="reject">Reject</option>
-                        <option value="draft">Under Investigation</option>
-                        </select>
-                    </td>
-                    <td><button class="myBtn modalbtn"> Open </button></a></td>
-                </tr>
+            <table id="admin_view_all">
+                <!-- table for admin to view all records -->
             </table>
         </div>
 
     </div>
-       <!-- Modal for reading or opening-->
-       <div id="myModal" class="modal">
+    <!-- Modal for reading or opening-->
+    <div id="myModal" class="modal">
 
-            <!-- Modal for reading content -->
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <div class="tablesection">
-                    <div class="homeh3andcontainer">
-                        <table>
-                            <tr>
-                                <th>ID</th>
-                                <td>001</td>
-                            </tr>
-                            <tr>
-                                <th>Type</th>
-                                <td>Red Flag</td>
-                            </tr>
-                            <tr>
-                                <th>Status</th>
-                                <td>Resolved</td>
-                            </tr>
-                            <tr>
-                                <th>Created on</th>
-                                <td>01/02/2018</td>
-                            </tr>
-                            <tr>
-                                <th>Created By</th>
-                                <td>Eric Bernard</td>
-                            </tr>
-                            <tr>
-                                <th>Location</th>
-                                <td>Nairobi</td>
-                            </tr>
-                            <tr>
-                                <th>Subject</th>
-                                <td>A report on corruption happening somewhere</td>
-                            </tr>
-                            <tr>
-                                <th>Description</th>
-                                <td>A report on corruption happening somewhere A report on corruption happening somewhere A
-                                    report
-                                    on corruption happening somewhere A report on corruption happening somewhere A report
-                                    on
-                                    corruption happening somewhere A report on corruption happening somewhere A report on
-                                    corruption happening somewhereA report on corruption happening somewhereA report on
-                                    corruption
-                                    happening somewhere A report on corruption happening somewhere
-                                    A report on corruption happening somewhereA report on corruption happening somewhereA
-                                    report on
-                                    corruption happening somewhere A report on corruption happening somewhere A report on
-                                    corruption happening somewhere A report on corruption happening somewhere A report on
-                                    corruption happening somewhereA report on corruption happening somewhereA report on
-                                    corruption
-                                    happening somewhere A report on corruption happening somewhere
-                                    A report on corruption happening somewhere
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Image(click to open)</th>
-                                <td>
-                                    <a target="_blank" href="media/image.png">
-                                        <img src="media/image.png" alt="Image deipaly corruption" class="image">
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Video</th>
-                                <td>None</td>
-                            </tr>
-                        </table>
-                    </div>
+        <!-- Modal for reading content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="tablesection">
+                <div class="homeh3andcontainer">
+                    <table id="admin_view_one">
+                        <!-- admin view one record -->
+                    </table>
                 </div>
-    
             </div>
+
         </div>
+    </div>
 
     <div class="footer">
         <p>&copy; 2018 </p>

@@ -94,6 +94,19 @@ button {
 }
 
 /* ################## Login & SIgnup ################################ */
+.button-login{
+    background-color: #157A6E;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
 
 .container {
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
@@ -111,6 +124,15 @@ button {
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
+}
+
+label{
+    color: red; 
+    font-size: 15px;
+}
+
+.form_label{
+    color: black !important;
 }
 
 .container input[type="text"], .container input[type="password"], .container input[type="email"] {
@@ -254,7 +276,7 @@ button {
 .grid-container {
     margin-top: 50px;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
 }
 
 .grid-item {
@@ -263,10 +285,7 @@ button {
     /* font-size: 20px; */
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.centergriditem {
-    margin: 0 50px 0 50px;
+    margin: 0 5px;
 }
 
 /* ############### list table##################### */
@@ -350,5 +369,9 @@ tr:nth-child(even) {
 .close:focus {
     color: #000;
     text-decoration: none;
+    cursor: pointer;
+}
+
+.pointer_cursor{
     cursor: pointer;
 }

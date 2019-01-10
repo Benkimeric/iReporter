@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>iReporter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+</head>
+
+<body onload="viewUsers()">
+    <div class="topnav">
+        <a id="logo" href="index.html">iReporter</a>
+        <div class="right">
+            <a href="admin.html">Home</a>
+            <a href="users.html">Users</a>
+            <a href="profile.html">Profile</a>
+            <a onclick="logout()" class="pointer_cursor">Logout</a>
+        </div>
+    </div>
+
+    <div class="tablesection">
+        <div class="homeh3andcontainer">
+            <br>
+            <h3>List of All Users</h3>
+            <label id="users_label"></label>
+            <input type="text" id="searchflag" placeholder="Search for Flags and Interventions">
+            <table id="all_users">
+                <!-- table for all users records -->
+            </table>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2018 </p>
+    </div>
+    <script src="js/users.js"> </script>
+</body>
+
+</html>

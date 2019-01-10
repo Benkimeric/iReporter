@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
 </head>
 
-<body>
+<body onload="loadEditData()" onunload="clearVars()">
     <div class="topnav">
         <a id="logo" href="#">iReporter</a>
         <div class="right">
@@ -17,46 +17,69 @@
             <a href="list.html">My Flags & Interventions</a>
             <a href="allflags.html">All Flags & Intereventions</a>
             <a href="profile.html">Profile</a>
-            <a href="login.html">Logout</a>
+            <a onclick="logout()" class="pointer_cursor">Logout</a>
         </div>
     </div>
 
     <div class="tablesection">
         <div class="homeh3andcontainer">
             <h3>Editing Red-Flag or an Intervention</h3>
-            <form>
+            <label class="form_label">Record Type: <span id="edit_record_type"></span></span></label>
+            <!-- edit comment -->
+            <form id="edit_comment_form" method="POST">
                 <ul class="formclass">
                     <li>
-                        <select name="field4" class="field-select">
-                            <option value="type" disabled selected>Select type To Create</option>
-                            <option value="redflag">Red-Flag</option>
-                            <option value="intervention">Intervention</option>
-                        </select>
+                        <br>
+                        <label class="form_label">Edit Description</span></label>
+                        <label id="edit_comment_label"></label>
+                        <textarea name="description" id="edit_comment" class="flags-inputs field-textarea" required></textarea>
                     </li>
                     <li>
-                        <label>Subject</label>
-                        <input type="text" name="location" class="flags-inputs" />
-                    </li>
-                    <li>
-                        <label>Description</span></label>
-                        <textarea name="description" id="description" class="flags-inputs field-textarea"></textarea>
-                    </li>
-                    <li>
-                        <label>Search Location </label>
-                        <input type="text" name="location" class="flags-inputs" />
-                    </li>
-                    <li>
-                        <label>Choose Image To upload </label>
-                        <input type="file" name="image" class="flags-inputs" accept="image/*" />
-                    </li>
-                    <li>
-                        <label>Choose Video To upload </label>
-                        <input type="file" name="image" class="flags-inputs" accept="video/*" />
-                    </li>
-                    <li>
-                        <input id="submit" type="submit" value="Create" />
+                        <input type="submit" value="Submit New Description" />
                     </li>
                 </ul>
+            </form>
+            <br>
+            <!-- edit location -->
+            <form id="edit_location_form">
+                <ul class="formclass">
+                    <li>
+                        <label class="form_label">Edit Location </label>
+                        <label id="edit_location_label"></label>
+                        <input type="text" name="location" id="edit_location" class="flags-inputs" required />
+                    </li>
+                    <li>
+                        <input id="submit" type="submit" value="Submit New Location" />
+                    </li>
+                </ul>
+            </form>
+            <br>
+            <!-- edit image -->
+            <form id="edit_image_form">
+                <ul class="formclass">
+                    <li>
+                        <label class="form_label">Choose Image To upload </label>
+                        <input type="file" name="image" id="image" class="flags-inputs" accept="image/*" required />
+                    </li>
+                    <li>
+                        <input id="submit" type="submit" value="Submit New Image" />
+                    </li>
+                </ul>
+            </form>
+            <br>
+            <!-- edit video  -->
+            <form id="edit_video_form">
+                <ul class="formclass">
+                    <li>
+                        <label class="form_label">Choose Video To upload </label>
+                        <input type="file" name="video" id="video" class="flags-inputs" accept="video/*" required />
+                    </li>
+                    <li>
+                        <input id="submit" type="submit" value="Submit New Video" />
+                    </li>
+                </ul>
+            </form>
+            </ul>
             </form>
         </div>
 
@@ -65,6 +88,7 @@
     <div class="footer">
         <p>&copy; 2018 </p>
     </div>
+    <script src="js/alter_incidents.js"> </script>
 </body>
 
 </html>

@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
 </head>
 
-<body>
+<body onload="getUserRecords()">
     <div class="topnav">
         <a id="logo" href="#">iReporter</a>
         <div class="right">
@@ -17,7 +17,7 @@
             <a href="list.html">My Flags & Interventions</a>
             <a href="allflags.html">All Flags & Intereventions</a>
             <a href="profile.html">Profile</a>
-            <a href="login.html">Logout</a>
+            <a onclick="logout()" class="pointer_cursor">Logout</a>
         </div>
     </div>
 
@@ -25,59 +25,11 @@
         <div class="homeh3andcontainer">
             <br><br>
             <a href="flags.html">+Create New Interevention or Red-flag</a>
-            <h3>List of all red flag and interventions by Eric Bernard</h3>
-            <table>
-                <tr>
-                    <th>Subject</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-                <tr>
-                    <td>Corruption along Mombasa Road</td>
-                    <td>Red-Flag</td>
-                    <td>This is to bring to your attention of Corruption along Mombasa Road</td>
-                    <td>Resolved</td>
-                    <td class="widdencell">
-                        <button class="myBtn modalbtn"> Open </button>
-                        <a href="editflag.html"> <button id="editBtn"> Edit </button></a>
-                        <button class=""> Delete </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Corruption along Mombasa Road</td>
-                    <td>Interevention</td>
-                    <td>This is to bring to your attention of Corruption along Mombasa Road</td>
-                    <td>Resolved</td>
-                    <td class="widdencell">
-                        <button class="myBtn modalbtn"> Open </button>
-                        <a href="editflag.html"> <button id="editBtn"> Edit </button></a>
-                        <button class=""> Delete </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Corruption along Mombasa Road</td>
-                    <td>Interevention</td>
-                    <td>This is to bring to your attention of Corruption along Mombasa Road</td>
-                    <td>Rejected</td>
-                    <td class="widdencell">
-                        <button class="myBtn modalbtn"> Open </button>
-                        <a href="editflag.html"> <button id="editBtn"> Edit </button></a>
-                        <button class=""> Delete </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Corruption along Mombasa Road</td>
-                    <td>Red-Flag</td>
-                    <td>This is to bring to your attention of Corruption along Mombasa Road</td>
-                    <td>Rejected</td>
-                    <td class="widdencell">
-                        <button class="myBtn modalbtn"> Open </button>
-                        <a href="editflag.html"> <button id="editBtn"> Edit </button></a>
-                        <button class=""> Delete </button>
-                    </td>
-                </tr>
+            <h3><a href="#" data-value="red-flag" onclick="get_user_record_type(this)">View My Red-flags</a></h3>
+            <h3><a href="#" data-value="intervention" onclick="get_user_record_type(this)">View My Interventions</a></h3>
+            <label id="user_timeout_label"></label>
+            <table id="user_records">
+                <!-- table for user's incidents records -->
             </table>
         </div>
 
@@ -91,67 +43,8 @@
             <span class="close">&times;</span>
             <div class="tablesection">
                 <div class="homeh3andcontainer">
-                    <table>
-                        <tr>
-                            <th>ID</th>
-                            <td>001</td>
-                        </tr>
-                        <tr>
-                            <th>Type</th>
-                            <td>Red Flag</td>
-                        </tr>
-                        <tr>
-                            <th>Status</th>
-                            <td>Resolved</td>
-                        </tr>
-                        <tr>
-                            <th>Created on</th>
-                            <td>01/02/2018</td>
-                        </tr>
-                        <tr>
-                            <th>Created By</th>
-                            <td>Eric Bernard</td>
-                        </tr>
-                        <tr>
-                            <th>Location</th>
-                            <td>Nairobi</td>
-                        </tr>
-                        <tr>
-                            <th>Subject</th>
-                            <td>A report on corruption happening somewhere</td>
-                        </tr>
-                        <tr>
-                            <th>Description</th>
-                            <td>A report on corruption happening somewhere A report on corruption happening somewhere A
-                                report
-                                on corruption happening somewhere A report on corruption happening somewhere A report
-                                on
-                                corruption happening somewhere A report on corruption happening somewhere A report on
-                                corruption happening somewhereA report on corruption happening somewhereA report on
-                                corruption
-                                happening somewhere A report on corruption happening somewhere
-                                A report on corruption happening somewhereA report on corruption happening somewhereA
-                                report on
-                                corruption happening somewhere A report on corruption happening somewhere A report on
-                                corruption happening somewhere A report on corruption happening somewhere A report on
-                                corruption happening somewhereA report on corruption happening somewhereA report on
-                                corruption
-                                happening somewhere A report on corruption happening somewhere
-                                A report on corruption happening somewhere
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Image(click to open)</th>
-                            <td>
-                                <a target="_blank" href="media/image.png">
-                                    <img src="media/image.png" alt="Image deipaly corruption" class="image">
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Video</th>
-                            <td>None</td>
-                        </tr>
+                    <table id="one_user_record">
+                        <!-- Table for displaying one record for a user -->
                     </table>
                 </div>
             </div>

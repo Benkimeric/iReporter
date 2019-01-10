@@ -9,65 +9,26 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
 </head>
 
-<body>
+<body onload="getRedFlags()">
     <div class="topnav">
         <a id="logo" href="index.html">iReporter</a>
         <div class="right">
             <a href="home.html">Home</a>
             <a href="list.html">My Flags & Interventions</a>
-            <a href="allflags.html">All Flags & Intereventions</a>
+            <a href="allflags.html">All Flags & Interventions</a>
             <a href="profile.html">Profile</a>
-            <a href="login.html">Logout</a>
+            <a onclick="logout()" class="pointer_cursor">Logout</a>
         </div>
     </div>
 
     <div class="tablesection">
         <div class="homeh3andcontainer">
-            <br><br>
-            <h3>All Red-Flags and Interventions</h3>
+                <h3><a href="#" data-value="red-flag" onclick="get_record_type(this)">View Red-flags</a></h3>
+                <h3><a href="#" data-value="intervention" onclick="get_record_type(this)">View Interventions</a></h3>
+                <label id = "timeout_label"></label>
             <input type="text" id="searchflag" placeholder="Search for Flags and Interventions">
-            <table>
-                <tr>
-                    <th>Subject</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                </tr>
-                <tr>
-                    <td>Corruption along Mombasa Road</td>
-                    <td>Red-Flag</td>
-                    <td>This is to bring to your attention of Corruption along Mombasa Road</td>
-                    <td>Resolved</td>
-                    <td><button class="myBtn"> Open </button></td>
-                </tr>
-                <tr>
-                    <td>Corruption along Mombasa Road</td>
-                    <td>Interevention</td>
-                    <td>This is to bring to your attention of Corruption along Mombasa Road</td>
-                    <td>Resolved</td>
-                    <td><button class="myBtn"> Open </button></td>
-                </tr>
-                <tr>
-                    <td>Corruption along Mombasa Road</td>
-                    <td>Interevention</td>
-                    <td>This is to bring to your attention of Corruption along Mombasa Road</td>
-                    <td>Resolved</td>
-                    <td><button class="myBtn"> Open </button></td>
-                </tr>
-                <tr>
-                    <td>Corruption along Mombasa Road</td>
-                    <td>Red-Flag</td>
-                    <td>This is to bring to your attention of Corruption along Mombasa Road</td>
-                    <td>Resolved</td>
-                    <td><button class="myBtn"> Open </button></td>
-                </tr>
-                <tr>
-                    <td>Corruption along Mombasa Road</td>
-                    <td>Red-Flag</td>
-                    <td>This is to bring to your attention of Corruption along Mombasa Road</td>
-                    <td>Resolved</td>
-                    <td><button class="myBtn"> Open </button></td>
-                </tr>
+            <table id="all_records">
+                <!-- table for all incidents records -->
             </table>
         </div>
 
@@ -80,67 +41,8 @@
                 <span class="close">&times;</span>
                 <div class="tablesection">
                     <div class="homeh3andcontainer">
-                        <table>
-                            <tr>
-                                <th>ID</th>
-                                <td>001</td>
-                            </tr>
-                            <tr>
-                                <th>Type</th>
-                                <td>Red Flag</td>
-                            </tr>
-                            <tr>
-                                <th>Status</th>
-                                <td>Resolved</td>
-                            </tr>
-                            <tr>
-                                <th>Created on</th>
-                                <td>01/02/2018</td>
-                            </tr>
-                            <tr>
-                                <th>Created By</th>
-                                <td>Eric Bernard</td>
-                            </tr>
-                            <tr>
-                                <th>Location</th>
-                                <td>Nairobi</td>
-                            </tr>
-                            <tr>
-                                <th>Subject</th>
-                                <td>A report on corruption happening somewhere</td>
-                            </tr>
-                            <tr>
-                                <th>Description</th>
-                                <td>A report on corruption happening somewhere A report on corruption happening somewhere A
-                                    report
-                                    on corruption happening somewhere A report on corruption happening somewhere A report
-                                    on
-                                    corruption happening somewhere A report on corruption happening somewhere A report on
-                                    corruption happening somewhereA report on corruption happening somewhereA report on
-                                    corruption
-                                    happening somewhere A report on corruption happening somewhere
-                                    A report on corruption happening somewhereA report on corruption happening somewhereA
-                                    report on
-                                    corruption happening somewhere A report on corruption happening somewhere A report on
-                                    corruption happening somewhere A report on corruption happening somewhere A report on
-                                    corruption happening somewhereA report on corruption happening somewhereA report on
-                                    corruption
-                                    happening somewhere A report on corruption happening somewhere
-                                    A report on corruption happening somewhere
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Image(click to open)</th>
-                                <td>
-                                    <a target="_blank" href="media/image.png">
-                                        <img src="media/image.png" alt="Image deipaly corruption" class="image">
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Video</th>
-                                <td>None</td>
-                            </tr>
+                        <table id="one_record">
+                            <!-- Table for displaying one record -->
                         </table>
                     </div>
                 </div>
