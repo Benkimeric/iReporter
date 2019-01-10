@@ -99,6 +99,11 @@ function editComment(e) {
         .catch((err) => console.log(err))
 }
 
+function logout() {
+    localStorage.removeItem('token');
+    window.location.replace("./login.html")
+}
+
 // edit location
 function hide_location_label() {
     let edit_location_label = document.getElementById('edit_location_label')

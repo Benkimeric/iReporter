@@ -25,6 +25,11 @@ function hide_label() {
   }, 3000)
 }
 
+function logout() {
+  localStorage.removeItem('token');
+  window.location.replace("./login.html")
+}
+
 function login_redirect() {
   window.setTimeout(function () {
       window.location.replace("./login.html")

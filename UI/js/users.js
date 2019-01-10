@@ -24,6 +24,11 @@ function login_redirect() {
     }, 5000)
 }
 
+function logout() {
+    localStorage.removeItem('token');
+    window.location.replace("./login.html")
+}
+
 function viewProfile() {
     fetch(`${base_URL}users/profile`, {
         method: 'GET',
