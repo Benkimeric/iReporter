@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
 </head>
 
-<body>
+<body onload="viewProfile()">
     <div class="topnav">
         <a id="logo" href="#">iReporter</a>
         <div class="right">
@@ -22,45 +22,19 @@
     </div>
     <div>
         <div class="container signup">
+            <br>
+            <label id="profile_label"></label>
             <h2>User Profile</h2><br>
-            <img src="media/user.png" class="image" id="profile" alt="Image deipaly corruption">
-            <p>Username: <span>Benkim</span></p>
-            <p>First Name: <span>Benkim</span></p>
-            <p>Last Name: <span>Eric</span></p>
-            <p>Email: <span>benkimeric@gmail.com</span></p>
-            <p>Phone: <span>1234567893</span></p>
-            <button class="myBtn">Edit</button>
-
-            <!-- Edit information Modal -->
-            <div id="myModal" class="modal">
-
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <p>Click on the data you want to edit to make changes</p>
-                    <form action="" method="POST">
-                        <input type="text" name="firstName" placeholder="First Name" id="fname"><br>
-
-                        <input type="text" name="lname" placeholder="Last Name" id="lname"><br>
-
-                        <input type="text" name="mname" placeholder="Middle name" id="lname"><br>
-
-                        <input type="email" name="email" placeholder="Email" id="email"><br>
-
-                        <input type="text" name="phone" placeholder="Phone" id="phone"><br>
-
-                        <input type="password" name="pass" placeholder="Password" id="phone"><br>
-
-                        <input type="password" name="pass2" placeholder="Confirm Password" id="phone"><br>
-
-                        <button> Update</button><br>
-                    </form>
-                </div>
-
-            </div>
+            <img src="media/user.png" class="image" id="profile" alt="user profile picture">
+            <p>Username: <span id="puser_name" style="color:black"></span></p>
+            <p>First Name: <span id="pfirst_name" style="color:black"></span></p>
+            <p>Other Name: <span id="pother_name" style="color:black"></span></p>
+            <p>Last Name: <span id="plast_name" style="color:black"></span></p>
+            <p>Phone: <span id="pphone" style="color:black"></span></p>
+            <p>Email: <span id="pemail" style="color:black"></span></p><br>
         </div>
     </div>
-    <script src="js/main.js"> </script>
+    <script src="js/users.js"> </script>
 </body>
 
 </html>
