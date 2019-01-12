@@ -42,7 +42,7 @@ function New_Incident(e) {
   // record_type variable to be used in both url and type**
   let record_type = document.getElementById('record_type').value;
   let comment = document.getElementById('description').value;
-  let location = document.getElementById('location').value;
+  let location = document.getElementById('location_lat_long').value;
 
   fetch(`${base_URL}${record_type}`, {
     method: 'POST',
