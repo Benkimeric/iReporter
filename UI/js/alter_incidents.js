@@ -124,7 +124,7 @@ function editLocation(e) {
 
     let type_record = localStorage.getItem('record_type')
     let id_record = localStorage.getItem('record_id')
-    let location = document.getElementById('edit_location').value;
+    let location = document.getElementById('location_lat_long').value;
 
     fetch(`${base_URL}${type_record}/${id_record}/location`, {
         method: 'PATCH',

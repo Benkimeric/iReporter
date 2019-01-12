@@ -46,7 +46,9 @@
                     <li>
                         <label class="form_label">Edit Location </label>
                         <label id="edit_location_label"></label>
-                        <input type="text" name="location" id="edit_location" class="flags-inputs" required />
+                        <input type="text" name="location" id="edit_location" class="flags-inputs" placeholder="Enter New Location Name" required />
+                        <input type="hidden" id="location_name" name="location_name" />
+                        <input type="hidden" id="location_lat_long" name="location_lat_long" />
                     </li>
                     <li>
                         <input id="submit" type="submit" value="Submit New Location" />
@@ -88,6 +90,21 @@
     <div class="footer">
         <p>&copy; 2018 </p>
     </div>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDMokcOGCn1mP4SnEF2vi4J9rPXdEEaj5A&libraries=places" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function initialize() {
+            var input = document.getElementById('edit_location');
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                var place = autocomplete.getPlace();
+                document.getElementById('location_name').value = place.name;
+                let lat_long = place.geometry.location.lat() +", "+ place.geometry.location.lng()
+                document.getElementById('location_lat_long').value = lat_long
+            });
+        }
+        google.maps.event.addDomListener(window, 'load', initialize); 
+    </script>
     <script src="js/alter_incidents.js"> </script>
 </body>
 
