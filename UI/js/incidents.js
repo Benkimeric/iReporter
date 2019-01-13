@@ -74,7 +74,12 @@ function New_Incident(e) {
             flags_error_label.innerHTML = "Session has expired, you will be redirected to login again"
             login_redirect()
         }
-    }
+    } else if (data.message == 'Please ensure comma separated lat and long and within appropriate ranges') {
+      let flags_error_label = document.getElementById('flags_error_label')
+      if (flags_error_label) {
+          flags_error_label.innerHTML = "Please enter and select location name"
+      }
+  }
       else {
         let flags_error_label = document.getElementById('flags_error_label')
         if (flags_error_label) {

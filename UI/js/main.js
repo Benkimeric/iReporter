@@ -20,10 +20,12 @@ var span = document.getElementsByClassName("close")[0];
 })
 span.onclick = function () {
     modal.style.display = "none";
+    localStorage.removeItem('location_lats');
 }
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
+        localStorage.removeItem('location_lats');
     }
 }
 // display inteventions by default
@@ -126,6 +128,14 @@ function populate_modal() {
                 .then((res) => res.json())
                 .then((data) => {
                     // console.log(data.data)
+                    if (data.message == 'Internal Server Error') {
+                        let timeout_label = document.getElementById('timeout_label')
+                        if (timeout_label) {
+                            timeout_label.innerHTML = "Session has expired, you will be redirected to login again"
+                            login_redirect()
+                        }
+                    } else{
+                        localStorage.setItem('location_lats', data.data.location)
                     let records = `
                               <tr>
                               <th>ID</th>
@@ -148,9 +158,7 @@ function populate_modal() {
                               <td>${data.data.create_by}</td>
                               </tr>
                               <tr>
-                              <th>Location</th>
-                              <td>${data.data.location}</td>
-                              </tr>
+                              
                               <tr>
                               <th>Description</th>
                               <td>${data.data.comment}</td>
@@ -168,9 +176,14 @@ function populate_modal() {
                               <td>${data.data.video}</td>
                               </tr>
                               <tr>
+                              <tr>
+                              <h3>Location</h3>
+                              
+                              </tr>
                               `;
 
                     document.getElementById('one_record').innerHTML = records;
+                    }
                 })
                 .catch((err) => console.log(err))
         }
@@ -276,6 +289,14 @@ function populate_user_modal() {
                 .then((res) => res.json())
                 .then((data) => {
                     // console.log(data.data)
+                    if (data.message == 'Internal Server Error') {
+                        let user_timeout_label = document.getElementById('user_timeout_label')
+                        if (user_timeout_label) {
+                            user_timeout_label.innerHTML = "Session has expired, you will be redirected to login again"
+                            login_redirect()
+                        }
+                    } else {
+                        localStorage.setItem('location_lats', data.data.location)
                     let user_records = `
                               <tr>
                               <th>ID</th>
@@ -297,10 +318,7 @@ function populate_user_modal() {
                               <th>Created By</th>
                               <td>${data.data.create_by}</td>
                               </tr>
-                              <tr>
-                              <th>Location</th>
-                              <td>${data.data.location}</td>
-                              </tr>
+                             
                               <tr>
                               <th>Description</th>
                               <td>${data.data.comment}</td>
@@ -318,9 +336,14 @@ function populate_user_modal() {
                               <td>${data.data.video}</td>
                               </tr>
                               <tr>
+                              <tr>
+                              <h3>Location</h3>
+                              
+                              </tr>
                               `;
 
                     document.getElementById('one_user_record').innerHTML = user_records;
+                    }
                 })
                 .catch((err) => console.log(err))
         }
@@ -503,6 +526,14 @@ function adminPopulateModal() {
                 .then((res) => res.json())
                 .then((data) => {
                     // console.log(data.data)
+                    if (data.message == 'Internal Server Error') {
+                        let admin_label = document.getElementById('admin_label')
+                        if (admin_label) {
+                            admin_label.innerHTML = "Session has expired, you will be redirected to login again"
+                            login_redirect()
+                        }
+                    } else {
+                        localStorage.setItem('location_lats', data.data.location)
                     let records = `
                               <tr>
                               <th>ID</th>
@@ -525,9 +556,7 @@ function adminPopulateModal() {
                               <td>${data.data.create_by}</td>
                               </tr>
                               <tr>
-                              <th>Location</th>
-                              <td>${data.data.location}</td>
-                              </tr>
+                             
                               <tr>
                               <th>Description</th>
                               <td>${data.data.comment}</td>
@@ -545,9 +574,14 @@ function adminPopulateModal() {
                               <td>${data.data.video}</td>
                               </tr>
                               <tr>
+                              <tr>
+                              <h3>Location</h3>
+                              
+                              </tr>
                               `;
 
                     document.getElementById('admin_view_one').innerHTML = records;
+                    }
                 })
                 .catch((err) => console.log(err))
         }
@@ -613,4 +647,46 @@ function updateStatus() {
     });
 }
 
+// google maps 
+function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 8,
+      center: {lat: 40.731, lng: -73.997}
+    });
+    var geocoder = new google.maps.Geocoder;
+    var infowindow = new google.maps.InfoWindow;
+
+    var element = document.getElementById('myModal')
+    if (element){
+        element.addEventListener('mouseover', function() {
+            geocodeLatLng(geocoder, map, infowindow);
+          });
+    }
+  }
+  function geocodeLatLng(geocoder, map, infowindow) {
+    var input = localStorage.getItem('location_lats')
+    var latlngStr = input.split(',', 2);
+    var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+    geocoder.geocode({'location': latlng}, function(results, status) {
+      if (status === 'OK') {
+        if (results[0]) {
+          map.setZoom(11);
+          var marker = new google.maps.Marker({
+            position: latlng,
+            map: map
+          });
+          infowindow.setContent(results[0].formatted_address);
+          infowindow.open(map, marker);
+        } else {
+          window.alert('No results found');
+        }
+      } else if(status === 'OVER_QUERY_LIMIT'){
+          console.log("Location geocoded")
+      } else {
+          console.log('Geocoder failed due to ' + status)
+          window.alert('Map display failed');
+          location.reload()
+      }
+    });
+  }
 
