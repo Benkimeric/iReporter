@@ -375,3 +375,8 @@ tr:nth-child(even) {
 .pointer_cursor{
     cursor: pointer;
 }
+
+#map {
+    height: 400px;
+    width: 500px;
+  }
