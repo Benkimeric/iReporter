@@ -134,9 +134,44 @@ function populate_modal() {
                             timeout_label.innerHTML = "Session has expired, you will be redirected to login again"
                             login_redirect()
                         }
-                    } else{
+                    } else {
                         localStorage.setItem('location_lats', data.data.location)
-                    let records = `
+                        url = data.data.images
+                        if (url.length < 5) {
+                            image_display = `<tr>
+                            <th>Image</th>
+                            <td>None</td>
+                            </tr>`
+                        } else {
+                            images_url = url.replace(/ /g, "%20")
+                            image_display = `<tr>
+                            <th>Image(click to open)</th>
+                            <td>
+                            <a target="_blank" href=${images_url}>
+                            <img src=${images_url} alt="Incident record image" class="image">
+                        </a>
+                            </td>
+                            </tr>
+                            <tr>`
+                        }
+
+                        v_url = data.data.video
+                        if (v_url.length < 5) {
+                            video_display = `<tr>
+                            <th>Video</th>
+                            <td>None</td>
+                            </tr>`
+                        } else {
+                            video_url = v_url.replace(/ /g, "%20")
+                            video_display = `<tr><th>Videos</th>
+                            <td>
+                            <video width="320" height="240" controls>
+                              <source src=${video_url} type="video/mp4">
+                              Your browser does not support the video tag.
+                              </video>
+                            </td></tr>`
+                        }
+                        let records = `
                               <tr>
                               <th>ID</th>
                               <td>${data.data.id}</td>
@@ -163,26 +198,15 @@ function populate_modal() {
                               <th>Description</th>
                               <td>${data.data.comment}</td>
                               </tr>
-                              <tr>
-                              <th>Image(click to open)</th>
-                              <td>
-                              <a target="_blank" href="media/image.png">
-                              <img src="media/image.png" alt="Image deipaly corruption" class="image">
-                          </a>
-                              </td>
-                              </tr>
-                              <tr>
-                              <th>Videos</th>
-                              <td>${data.data.video}</td>
-                              </tr>
-                              <tr>
+                              ${image_display}
+                              ${video_display}
                               <tr>
                               <h3>Location</h3>
                               
                               </tr>
                               `;
 
-                    document.getElementById('one_record').innerHTML = records;
+                        document.getElementById('one_record').innerHTML = records;
                     }
                 })
                 .catch((err) => console.log(err))
@@ -288,7 +312,6 @@ function populate_user_modal() {
             })
                 .then((res) => res.json())
                 .then((data) => {
-                    // console.log(data.data)
                     if (data.message == 'Internal Server Error') {
                         let user_timeout_label = document.getElementById('user_timeout_label')
                         if (user_timeout_label) {
@@ -297,7 +320,42 @@ function populate_user_modal() {
                         }
                     } else {
                         localStorage.setItem('location_lats', data.data.location)
-                    let user_records = `
+                        url = data.data.images
+                        if (url.length < 5) {
+                            image_display = `<tr>
+                            <th>Image</th>
+                            <td>None</td>
+                            </tr>`
+                        } else {
+                            images_url = url.replace(/ /g, "%20")
+                            image_display = `<tr>
+                            <th>Image(click to open)</th>
+                            <td>
+                            <a target="_blank" href=${images_url}>
+                            <img src=${images_url} alt="Incident record image" class="image">
+                        </a>
+                            </td>
+                            </tr>
+                            <tr>`
+                        }
+
+                        v_url = data.data.video
+                        if (v_url.length < 5) {
+                            video_display = `<tr>
+                            <th>Video</th>
+                            <td>None</td>
+                            </tr>`
+                        } else {
+                            video_url = v_url.replace(/ /g, "%20")
+                            video_display = `<tr><th>Videos</th>
+                            <td>
+                            <video width="320" height="240" controls>
+                              <source src=${video_url} type="video/mp4">
+                              Your browser does not support the video tag.
+                              </video>
+                            </td></tr>`
+                        }
+                        let user_records = `
                               <tr>
                               <th>ID</th>
                               <td>${data.data.id}</td>
@@ -323,26 +381,15 @@ function populate_user_modal() {
                               <th>Description</th>
                               <td>${data.data.comment}</td>
                               </tr>
-                              <tr>
-                              <th>Image(click to open)</th>
-                              <td>
-                              <a target="_blank" href="media/image.png">
-                              <img src="media/image.png" alt="Image deipaly corruption" class="image">
-                          </a>
-                              </td>
-                              </tr>
-                              <tr>
-                              <th>Videos</th>
-                              <td>${data.data.video}</td>
-                              </tr>
-                              <tr>
+                              ${image_display}
+                              ${video_display}
                               <tr>
                               <h3>Location</h3>
                               
                               </tr>
                               `;
 
-                    document.getElementById('one_user_record').innerHTML = user_records;
+                        document.getElementById('one_user_record').innerHTML = user_records;
                     }
                 })
                 .catch((err) => console.log(err))
@@ -534,7 +581,42 @@ function adminPopulateModal() {
                         }
                     } else {
                         localStorage.setItem('location_lats', data.data.location)
-                    let records = `
+                        url = data.data.images
+                        if (url.length < 5) {
+                            image_display = `<tr>
+                            <th>Image</th>
+                            <td>None</td>
+                            </tr>`
+                        } else {
+                            images_url = url.replace(/ /g, "%20")
+                            image_display = `<tr>
+                            <th>Image(click to open)</th>
+                            <td>
+                            <a target="_blank" href=${images_url}>
+                            <img src=${images_url} alt="Incident record image" class="image">
+                        </a>
+                            </td>
+                            </tr>
+                            <tr>`
+                        }
+
+                        v_url = data.data.video
+                        if (v_url.length < 5) {
+                            video_display = `<tr>
+                            <th>Video</th>
+                            <td>None</td>
+                            </tr>`
+                        } else {
+                            video_url = v_url.replace(/ /g, "%20")
+                            video_display = `<tr><th>Videos</th>
+                            <td>
+                            <video width="320" height="240" controls>
+                              <source src=${video_url} type="video/mp4">
+                              Your browser does not support the video tag.
+                              </video>
+                            </td></tr>`
+                        }
+                        let records = `
                               <tr>
                               <th>ID</th>
                               <td>${data.data.id}</td>
@@ -561,26 +643,15 @@ function adminPopulateModal() {
                               <th>Description</th>
                               <td>${data.data.comment}</td>
                               </tr>
-                              <tr>
-                              <th>Image(click to open)</th>
-                              <td>
-                              <a target="_blank" href="media/image.png">
-                              <img src="media/image.png" alt="Image display corruption" class="image">
-                          </a>
-                              </td>
-                              </tr>
-                              <tr>
-                              <th>Videos</th>
-                              <td>${data.data.video}</td>
-                              </tr>
-                              <tr>
+                              ${image_display}
+                              ${video_display}
                               <tr>
                               <h3>Location</h3>
                               
                               </tr>
                               `;
 
-                    document.getElementById('admin_view_one').innerHTML = records;
+                        document.getElementById('admin_view_one').innerHTML = records;
                     }
                 })
                 .catch((err) => console.log(err))
@@ -650,43 +721,43 @@ function updateStatus() {
 // google maps 
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 8,
-      center: {lat: 40.731, lng: -73.997}
+        zoom: 8,
+        center: { lat: 40.731, lng: -73.997 }
     });
     var geocoder = new google.maps.Geocoder;
     var infowindow = new google.maps.InfoWindow;
 
     var element = document.getElementById('myModal')
-    if (element){
-        element.addEventListener('mouseover', function() {
+    if (element) {
+        element.addEventListener('mouseover', function () {
             geocodeLatLng(geocoder, map, infowindow);
-          });
+        });
     }
-  }
-  function geocodeLatLng(geocoder, map, infowindow) {
+}
+function geocodeLatLng(geocoder, map, infowindow) {
     var input = localStorage.getItem('location_lats')
     var latlngStr = input.split(',', 2);
-    var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-    geocoder.geocode({'location': latlng}, function(results, status) {
-      if (status === 'OK') {
-        if (results[0]) {
-          map.setZoom(11);
-          var marker = new google.maps.Marker({
-            position: latlng,
-            map: map
-          });
-          infowindow.setContent(results[0].formatted_address);
-          infowindow.open(map, marker);
+    var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
+    geocoder.geocode({ 'location': latlng }, function (results, status) {
+        if (status === 'OK') {
+            if (results[0]) {
+                map.setZoom(11);
+                var marker = new google.maps.Marker({
+                    position: latlng,
+                    map: map
+                });
+                infowindow.setContent(results[0].formatted_address);
+                infowindow.open(map, marker);
+            } else {
+                window.alert('No results found');
+            }
+        } else if (status === 'OVER_QUERY_LIMIT') {
+            console.log("Location geocoded")
         } else {
-          window.alert('No results found');
+            console.log('Geocoder failed due to ' + status)
+            window.alert('Map display failed');
+            location.reload()
         }
-      } else if(status === 'OVER_QUERY_LIMIT'){
-          console.log("Location geocoded")
-      } else {
-          console.log('Geocoder failed due to ' + status)
-          window.alert('Map display failed');
-          location.reload()
-      }
     });
-  }
+}
 

@@ -172,3 +172,130 @@ function editLocation(e) {
         })
         .catch((err) => console.log(err))
 }
+
+// add image
+function hide_image_label() {
+    let edit_image_label = document.getElementById('edit_image_label')
+    window.setTimeout(function () {
+        if (edit_image_label) {
+            edit_image_label.innerHTML = ""
+        }
+    }, 2000)
+}
+
+var edit_image_form = document.getElementById('edit_image_form');
+if (edit_image_form) {
+    edit_image_form.addEventListener('submit', addImage);
+}
+
+function addImage(e) {
+    e.preventDefault();
+
+    let type_record = localStorage.getItem('record_type')
+    let id_record = localStorage.getItem('record_id')
+
+    let formdata = new FormData();
+    formdata.append('file', document.getElementById("image").files[0]);
+    fetch(`${base_URL}${type_record}/${id_record}/images`, {
+        method: 'PATCH',
+        body: formdata,
+        headers: {
+            'Authorization': access_token
+        }
+    })
+        .then(res => res.json())
+        .then((data) => {
+            if (data.status == 403) {
+                let edit_image_label = document.getElementById('edit_image_label')
+                if (edit_image_label) {
+                    edit_image_label.innerHTML = data.message
+                    hide_image_label()
+                }
+            } else if (data.status == 200) {
+                let edit_image_label = document.getElementById('edit_image_label')
+                if (edit_image_label) {
+                    document.getElementById("edit_image_label").style.color = "green";
+                    edit_image_label.innerHTML = data.message
+                    hide_image_label()
+                }
+            }
+            else if (data.message == 'Internal Server Error') {
+                let edit_image_label = document.getElementById('edit_image_label')
+                if (edit_image_label) {
+                    edit_image_label.innerHTML = "Session has expired, you will be redirected to login again"
+                    login_redirect()
+                }
+            }
+            else {
+                let edit_image_label = document.getElementById('edit_image_label')
+                if (edit_image_label) {
+                    edit_image_label.innerHTML = data.message
+                    hide_image_label()
+                }
+            }
+        })
+        .catch((err) => console.log(err))
+}
+
+function hide_video_label() {
+    let edit_video_label = document.getElementById('edit_video_label')
+    window.setTimeout(function () {
+        if (edit_video_label) {
+            edit_video_label.innerHTML = ""
+        }
+    }, 2000)
+}
+
+var edit_video_form = document.getElementById('edit_video_form');
+if (edit_video_form) {
+    edit_video_form.addEventListener('submit', addVideo);
+}
+
+function addVideo(e) {
+    e.preventDefault();
+
+    let type_record = localStorage.getItem('record_type')
+    let id_record = localStorage.getItem('record_id')
+
+    let formdata = new FormData();
+    formdata.append('file', document.getElementById("video").files[0]);
+    fetch(`${base_URL}${type_record}/${id_record}/video`, {
+        method: 'PATCH',
+        body: formdata,
+        headers: {
+            'Authorization': access_token
+        }
+    })
+        .then(res => res.json())
+        .then((data) => {
+            if (data.status == 403) {
+                let edit_video_label = document.getElementById('edit_video_label')
+                if (edit_video_label) {
+                    edit_video_label.innerHTML = data.message
+                    hide_video_label()
+                }
+            } else if (data.status == 200) {
+                let edit_video_label = document.getElementById('edit_video_label')
+                if (edit_video_label) {
+                    document.getElementById("edit_video_label").style.color = "green";
+                    edit_video_label.innerHTML = data.message
+                    hide_video_label()
+                }
+            }
+            else if (data.message == 'Internal Server Error') {
+                let edit_video_label = document.getElementById('edit_video_label')
+                if (edit_video_label) {
+                    edit_video_label.innerHTML = "Session has expired, you will be redirected to login again"
+                    login_redirect()
+                }
+            }
+            else {
+                let edit_video_label = document.getElementById('edit_video_label')
+                if (edit_video_label) {
+                    edit_video_label.innerHTML = data.message
+                    hide_video_label()
+                }
+            }
+        })
+        .catch((err) => console.log(err))
+}
