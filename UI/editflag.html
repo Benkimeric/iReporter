@@ -57,10 +57,11 @@
             </form>
             <br>
             <!-- edit image -->
-            <form id="edit_image_form">
+            <form id="edit_image_form" method="POST" enctype="multipart/form-data">
                 <ul class="formclass">
                     <li>
                         <label class="form_label">Choose Image To upload </label>
+                        <label id="edit_image_label" ></label>
                         <input type="file" name="image" id="image" class="flags-inputs" accept="image/*" required />
                     </li>
                     <li>
@@ -74,6 +75,7 @@
                 <ul class="formclass">
                     <li>
                         <label class="form_label">Choose Video To upload </label>
+                        <label id="edit_video_label" ></label>
                         <input type="file" name="video" id="video" class="flags-inputs" accept="video/*" required />
                     </li>
                     <li>
