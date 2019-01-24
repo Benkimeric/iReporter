@@ -10,7 +10,7 @@ const lead = {
     signup_username: faker.name.lastName(),
     email: faker.internet.email(),
     pass: 'us7cgsTs$',
-    phone: '0736100374'
+    phone: '072'+faker.random.number(11111111,99999999)
 };
 
 const login = {
@@ -112,7 +112,7 @@ describe("Inncident tests", () => {
         await page.waitForSelector("#flags_error_label");
         await page.screenshot({ path: 'test.png' });
         const success_response = await page.$eval('#flags_error_label', e => e.innerHTML);
-        await page.screenshot({ path: 'test.png' });
+        // await page.screenshot({ path: 'test.png' });
         expect(success_response).toBe("Created intervention record");
 
     }, 2000000)
