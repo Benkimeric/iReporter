@@ -761,3 +761,59 @@ function geocodeLatLng(geocoder, map, infowindow) {
     });
 }
 
+function filterIncidents() {
+    let input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchflag");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("all_records");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[2];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }       
+    }
+  }
+
+  function filterUserRecords() {
+    let input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchflag");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("user_records");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[2];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }       
+    }
+  }
+
+  function filterAdminRecords() {
+    let input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchflag");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("admin_view_all");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[2];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }       
+    }
+  }
