@@ -28,6 +28,7 @@
             <h3><a href="#" data-value="red-flag" onclick="get_user_record_type(this)">View My Red-flags</a></h3>
             <h3><a href="#" data-value="intervention" onclick="get_user_record_type(this)">View My Interventions</a></h3>
             <label id="user_timeout_label"></label>
+            <input type="text" id="searchflag" onkeyup="filterUserRecords()" placeholder="Search By Description">
             <table id="user_records">
                 <!-- table for user's incidents records -->
             </table>

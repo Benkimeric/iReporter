@@ -26,7 +26,7 @@
             <h3><a href="#" data-value="red-flag" onclick="admin_record_type(this)">View Red-flags</a></h3>
             <h3><a href="#" data-value="intervention" onclick="admin_record_type(this)">View Interventions</a></h3>
             <label id="admin_label"></label>
-            <input type="text" id="searchflag" placeholder="Search for Flags and Interventions">
+            <input type="text" id="searchflag" onkeyup="filterAdminRecords()" placeholder="Search By Description">
             <table id="admin_view_all">
                 <!-- table for admin to view all records -->
             </table>

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+export NODE_PATH=/home/benkim/VSCodeProjects/iReporter/env/lib/node_modules
+export NPM_CONFIG_PREFIX=/home/benkim/VSCodeProjects/iReporter/env
+export npm_config_prefix=/home/benkim/VSCodeProjects/iReporter/env
+exec env/bin/node "$@"
