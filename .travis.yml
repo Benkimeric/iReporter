@@ -8,12 +8,15 @@ dist: trusty
 branches:
   only:
     - gh-pages
+addons:
+  chrome: stable
 
 cache:
   directories:
     - node_modules
 
 before_install:
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
   - npm update
 
 install:
