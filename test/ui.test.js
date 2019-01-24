@@ -21,30 +21,32 @@ const login = {
 let page;
 let browser;
 
-beforeAll(async () => {
+beforeAll(async (done) => {
     browser = await puppeteer.launch({
         headless: false,
         slowMo: 100,
         args: ['--no-sandbox']
     });
     page = await browser.newPage();
+    done()
 });
 afterAll(() => {
     browser.close();
 });
 
 describe("Loading", () => {
-    test("test that index page can be loaded", async () => {
+    test("test that index page can be loaded", async (done) => {
         await page.goto(APP);
         await page.waitForSelector('#logo');
 
         const html = await page.$eval('#logo', e => e.innerHTML);
         expect(html).toBe("iReporter");
+        done()
     }, 10000);
 });
 
 describe("Auth tests", () => {
-    test("test that a user can ceate an account", async () => {
+    test("test that a user can ceate an account", async (done) => {
         await page.goto(APP + 'signup.html');
         await page.waitForSelector("#signup");
         await page.click("input[name=fname]");
@@ -70,9 +72,10 @@ describe("Auth tests", () => {
         });
         // to login
         await page.waitForNavigation({ waitUntil: 'networkidle0', timeout: 0 });
+        done()
     }, 16000000);
 
-    test("test that a user can login", async () => {
+    test("test that a user can login", async (done) => {
         await page.goto(APP + 'login.html');
         await page.waitForSelector("#login");
         await page.click("input[name=Username]");
@@ -81,6 +84,7 @@ describe("Auth tests", () => {
         await page.type("input[name=Password]", login.pass);
         await page.click("input[type=submit]");
         await page.waitForNavigation({ waitUntil: 'networkidle0' });
+        done()
     }, 70000);
 });
 
@@ -90,15 +94,16 @@ const incident = {
 }
 
 describe("Inncident tests", () => {
-    test("test can load incident record page", async () => {
+    test("test can load incident record page", async (done) => {
         await page.goto(APP + 'list.html')
         await page.$x("//a[contains(text(), '+Create New Interevention or Red-flag')]");
         await page.$x("//a[contains(text(), 'View My Red-flags')]");
         await page.$x("//a[contains(text(), 'View My Interventions')]");
+        done()
 
     }, 200000)
 
-    test("Create New Interevention or Red-flag", async () => {
+    test("Create New Interevention or Red-flag", async (done) => {
         await page.goto(APP + 'flags.html')
         await page.waitForSelector("#new_incident_form");
         await page.click("textarea[name=description]");
@@ -114,6 +119,7 @@ describe("Inncident tests", () => {
         const success_response = await page.$eval('#flags_error_label', e => e.innerHTML);
         // await page.screenshot({ path: 'test.png' });
         expect(success_response).toBe("Created intervention record");
+        done()
 
     }, 2000000)
 });
