@@ -5,6 +5,9 @@ node_js:
   - "10.15"
 
 dist: trusty
+branches:
+  only:
+    - gh-pages
 
 cache:
   directories:
